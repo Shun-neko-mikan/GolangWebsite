@@ -1,0 +1,20 @@
+{{define "mainPage"}}
+{{template "header" .}}
+<blockquote>
+    <script src="/static/js/GPS.js"></script>
+    {{if eq .CommonData.Title "メインページ"}}
+    <div>{{.ContentString}}</div>
+    {{else}}
+    <!-- <div><button onclick="getgps()">test</button></div> -->
+    <button onclick="test()">test222</button>
+    <button onclick="clearview()">clear</button>
+    <pre id="position_view"></pre>
+    <script>
+        function movePage() {
+            var code = document.getElementById("code").value;
+            window.location.href = 'http://127.0.0.1:9000/dtlPage?code=' + code;
+        }
+    </script>
+    {{end}}
+</blockquote>
+{{end}}
