@@ -19,37 +19,6 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
-type CommonData struct {
-	Title string
-}
-
-func viewMainPage(c echo.Context) error {
-	var common = CommonData{Title: "Main Page"}
-
-	data := struct {
-		CommonData
-		Constent string
-	}{
-		CommonData: common,
-		Constent:   "Hello, Test!",
-	}
-	return c.Render(http.StatusOK, "mainPage", data)
-}
-
-func viewDetailPae(c echo.Context) error {
-	code := c.QueryParam("code")
-	var common = CommonData{Title: "Detail Page"}
-
-	data := struct {
-		CommonData
-		Code string
-	}{
-		CommonData: common,
-		Code: code,
-	}
-	return c.Render(http.StatusOK, "detailPage", data)
-}
-
 
 
 func main() {
@@ -68,5 +37,6 @@ func main() {
 	e.GET("/", viewMainPage)
 	e.GET("/dtlPage", viewDetailPae)
 	e.GET("/savegps", SaveGPS)
+	e.GET("/getYoutube/:id", GetYoutube)
 	e.Logger.Fatal(e.Start(":8080"))
 }
